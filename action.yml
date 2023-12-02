@@ -1,0 +1,37 @@
+name: 'QiNiu Kodo Upload'
+description: '七牛云对象存储的上传，上传到空间的项目目录上'
+author: 'Redmomn'
+branding:
+  icon: 'cloud'
+  color: 'blue'
+inputs:
+  access_key:
+    description: '七牛云的access_key'
+    required: true
+
+  secret_key:
+    description: '七牛云的secret_key'
+    required: true
+
+  upload_dir:
+    description: '要上传的本地文件的目录'
+    required: true
+
+  bucket_name:
+    description: '对象存储空间名称'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: 'get tag'
+      run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      shell: bash
+    - name: 'get proj path'
+      run: echo "REPO_PATH=$GITHUB_REPOSITORY" >> $GITHUB_ENV
+      shell: bash
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - run: python main.py
+      shell: bash
