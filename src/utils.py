@@ -10,9 +10,10 @@ def get_env(key: str) -> str:
     return os.environ.get('INPUT_' + key.upper())
 
 
-def upload_file(ak: str, sk: str, directory: str, bucket_name: str, tag: str):
+def upload_file(ak: str, sk: str, directory: str, bucket_name: str, tag: str, repo: str):
     """
     上传文件
+    :param repo:
     :param ak:
     :param sk:
     :param directory: 本地文件目录
@@ -24,9 +25,8 @@ def upload_file(ak: str, sk: str, directory: str, bucket_name: str, tag: str):
 
     files = get_filenames(directory)
     for file in files:
-
-        token = q.upload_token(bucket_name, "key", 3600)
-        put_file(token, key, directory+file, version='v2')
+        token = q.upload_token(bucket_name, repo + "/releases/download/" + tag + "/" + file, 3600)
+        put_file(token, repo + "/releases/download/" + tag + "/" + file, directory + file, version='v2')
     return
 
 
