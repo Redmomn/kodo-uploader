@@ -1,0 +1,16 @@
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: upload
+        uses: Redmomn/kodo-uploader@master
+        with:
+          access_key: ${{secrets.ak}}
+          secret_key: ${{secrets.sk}}
+          upload_dir: 'src/'
+          bucket_name: ${{secrets.bn}}

@@ -1,9 +1,6 @@
 import os
-import threading
 
 from qiniu import Auth, put_file
-
-semaphore = threading.Semaphore(20)
 
 
 def get_env(key: str) -> str:
