@@ -1,0 +1,19 @@
+name: Get Repository Path
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  get-repo-path:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show Repository Path
+        run: echo "Repository Path is $GITHUB_REPOSITORY"
+
+      - name: Set Repository Path Environment Variable
+        run: echo "REPO_PATH=${GITHUB_REPOSITORY}" >> $GITHUB_ENV
+
+      - name: Show Owner and Repo Name
+        run: echo "REPO_PATH=${REPO_PATH%%/*}"
