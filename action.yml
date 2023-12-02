@@ -30,8 +30,8 @@ runs:
     - name: 'get proj path'
       run: echo "REPO_PATH=$GITHUB_REPOSITORY" >> $GITHUB_ENV
       shell: bash
-    - name: show envs
-      run: env
+    - name: show
+      run: echo $INPUT_UPLOAD_DIR
       shell: bash
     - uses: actions/setup-python@v4
       with:
