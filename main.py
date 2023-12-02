@@ -19,6 +19,12 @@ def init():
     bucket_name = get_env('bucket_name')
     tag = os.environ.get('TAG')
     repo_path = os.environ.get('REPO_PATH')
+    print("ak:"+access_key)
+    print("sk"+secret_key)
+    print("uploaddir:"+upload_dir)
+    print("bn:"+bucket_name)
+    print("tag:"+tag)
+    print("repo:"+repo_path)
 
 
 
